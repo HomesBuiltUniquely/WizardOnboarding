@@ -3,40 +3,29 @@ import Link from "next/link";
 
 function Hero() {
   return (
-    <div className="flex-1 bg-gradient-to-b from-cyan-50 to-cyan-50 backdrop-blur-md   p-16 flex flex-col items-center justify-center relative overflow-hidden">
-      
-      {/* Subtle background glow effect like the image */}
-      <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-yellow-200/30 blur-[60px] rounded-full" />
-      <div className="absolute bottom-1/4 left-1/4 w-32 h-32 bg-orange-200/20 blur-[60px] rounded-full" />
+<div className="-mt-30">
+  <img src="/hood.png" className="w-[400px] h-[400px] object-cover mix-blend-multiply ml-20"></img>
+<div className="  ">
 
-      {/* Illustration Area */}
-      <div className="mb-12">
-        <img
-          src="/Hubstory.png" // Replace with your PNG
-          alt="Illustration"
-          className="h-44 object-contain mix-blend-multiply"
-        />
-      </div>
+{/* Text Content */}
+   <h1 className="text-[42px] -mt-20 font-extrabold text-[#2D2D2D] leading-tight mb-6 text-center max-w-xl">
+       From a gap to a revolution.
+     </h1>
+     <p className="text-[#6B7280] text-lg leading-relaxed mb-10 text-center max-w-xl">
+       We started HUB to bridge the gap between unorganized carpentry and
+       overpriced designer interiors. Our goal: make quality, modular
+       interiors accessible to every home.
+     </p>
 
-      {/* Text Content */}
-      <div className="text-center max-w-xl z-10">
-        <h1 className="text-[42px] font-extrabold text-[#2D2D2D] leading-tight mb-6">
-          From a gap to a revolution.
-        </h1>
-        <p className="text-[#6B7280] text-lg leading-relaxed mb-10">
-          We started HUB to bridge the gap between unorganized carpentry and
-          overpriced designer interiors. Our goal: make quality, modular
-          interiors accessible to every home.
-        </p>
+     {/* The Orange Button */}
+     <Link href="/HubFamily">
+       <button className="bg-[#EBAC8B] hover:bg-[#d6997a] text-white px-10 py-3.5 rounded-full font-semibold shadow-lg shadow-orange-200/50 transition-all flex items-center gap-2 mx-auto">
+         Meet Our Brands <span className="text-xl">→</span>
+       </button>
+     </Link>
 
-        {/* The Orange Button */}
-        <Link href="/HubFamily">
-          <button className="bg-[#EBAC8B] hover:bg-[#d6997a] text-white px-10 py-3.5 rounded-full font-semibold shadow-lg shadow-orange-200/50 transition-all flex items-center gap-2 mx-auto">
-            Meet Our Brands <span className="text-xl">→</span>
-          </button>
-        </Link>
-      </div>
-    </div>
+   </div>
+</div>
   );
 }
 

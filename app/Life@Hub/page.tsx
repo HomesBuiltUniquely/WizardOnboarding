@@ -1,56 +1,102 @@
+import Link from 'next/link';
 
+export default function Life() {
+  // Data for the sidebar steps (7 steps as shown in the design)
+  const steps = [
+    { id: 1, label: "Welcome", status: "done" },
+    { id: 2, label: "Your Profile", status: "done" },
+    { id: 3, label: "Team", status: "done" },
+    { id: 4, label: "Tools", status: "done" },
+    { id: 5, label: "Projects", status: "done" },
+    { id: 6, label: "Culture", status: "done" },
+    { id: 7, label: "Life at HUB", status: "active" },
+    { id: 8, label: "Leadership", status: "inactive" }
+  ];
 
-export default function Life(){
   return (
-    <div className="min-h-screen bg-gradient-to-r from-amber-50 via-pink-50 to-rose-50 p-8 text-black">
-      <div className="max-w-7xl mx-auto flex gap-12 items-start">
-        <h2 className="text-xl font-semibold mb-8">HOWS Onboarding - Life at HUB</h2>
-        {/* Left progress rail - hidden on small screens */}
-       
+    <div className="min-h-screen w-full bg-gradient-to-br from-white-50 to-amber-50 flex items-center justify-center p-4 md:p-8 font-sans">
+      
+      {/* Main Content Wrapper holding both floating cards */}
+      <div className="w-full max-w-[1300px] flex flex-col lg:flex-row gap-8 items-start">
+        
+        {/* --- Left Floating Sidebar Card --- */}
+        <div className="w-full lg:w-1/4 bg-amber-50 border-2 border-white rounded-[30px] p-8 shadow-lg h-[620px]">
+          <div className="flex flex-col gap-8 relative pl-2 pt-10">
 
-        {/* Main card */}
-        <main className="flex-1">
-          <div className="bg-white rounded-3xl p-8 mt-5 md:p-12 shadow-lg relative overflow-hidden w-[900] h-[700]">
-            <div className="md:flex md:items-center md:gap-12">
-              <div className="flex-1">
-                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Work hard. Create joy.<br/>Celebrate often.</h1>
+            
+             {/* Vertical connector line */}
+            <div className="absolute left-[19px] top-10 bottom-4 w-[2px] bg-gray-300 z-0"></div>
 
+            {steps.map((step) => (
+              <div key={step.id} className="flex items-center gap-4 relative z-10 ">
+                {step.status === 'active' ? (
+                   // Active Step (Orange Glow)
+                   <div className="w-6 h-6 rounded-full bg-orange-400 shadow-[0_0_15px_rgba(251,146,60,0.6)] flex items-center justify-center relative">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                   </div>
+                ) : step.status === 'done' ? (
+                  // Done Step (Orange without glow)
+                  <div className="w-6 h-6 rounded-full bg-orange-400 flex items-center justify-center">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </div>
+                ) : (
+                  // Inactive Step (Simple Dot)
+                  <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                  </div>
+                )}
+                
+                <span className={`text-sm font-medium ${step.status === 'active' ? 'text-orange-500 font-bold' : 'text-gray-500'}`}>
+                  {step.id}. {step.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
 
-                <div className="flex justify-evenly">
-                  <p className="pt-20">
-                  We call it Hubppening! — where recognition, laughter, and creativity come together. And yes, meet Dinkan, our Junior Happiness Associate <span className="inline-block">🐶</span>
+        {/* --- Right Floating Main Content Card --- */}
+        <div className="w-full h-[620px] lg:w-3/4 bg-amber-50 border-2 border-white rounded-[30px] p-8 md:p-12 shadow-lg flex items-center justify-center">
+          <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-12 w-full h-full flex flex-col">
+            
+            {/* Main Content Area - Flex layout for text and illustration */}
+            <div className="flex-1 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              
+              {/* Left Text Content */}
+              <div className="flex-1 flex flex-col justify-center">
+                {/* Headline */}
+                <h1 className="text-4xl md:text-5xl font-extrabold text-[#2D2D2D] leading-tight mb-6 -mt-5">
+                  Work hard. Create joy.<br/>Celebrate often.
+                </h1>
+
+                {/* Body Text */}
+                <p className="text-lg text-[#6B7280] leading-relaxed mb-8">
+                  We call it Hubppening! — where recognition, laughter, and creativity come together. And yes, meet Dinkan, our Junior Happiness Associate 🐶
                 </p>
 
-                <div>
-                  <img src="dog.png" alt="Dinkan the dog" className=""/>
-                </div>
+                {/* Button */}
+                <Link href="/Leaders">
+                  <button className="bg-[#FF8C42] hover:bg-[#FF7A2E] text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 text-base">
+                    Meet the People
+                    <span className="text-xl">→</span>
+                  </button>
+                </Link>
+              </div>
 
+              {/* Right Illustration Area */}
+              <div className="flex-1 flex items-center justify-center">
+                <div className="relative w-full max-w-md">
+                  {/* Illustration with people and dog */}
+                  <img
+                    src="/dog.png"
+                    alt="Team collaboration with Dinkan"
+                    className="w-full h-auto object-contain"
+                  />
                 </div>
-
-                <div className="w-[230px] -mt-20 flex bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded-full shadow-md">
-                 <a href="#" >Meet the People <span className="text-2xl">→</span></a>
-                </div>
-                
-
               </div>
             </div>
-                
-              </div>
-          
 
-            <hr className="mt-10 border-t border-amber-100" />
-
-            {/* Example lower content area (keeps spacing similar to reference) */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-xl bg-amber-50">
-                {/* placeholder block */}
-              </div>
-              <div className="p-6 rounded-xl bg-amber-50">
-                {/* placeholder block */}
-              </div>
-            </div>
-          
-        </main>
+          </div>
+        </div>
       </div>
     </div>
   );

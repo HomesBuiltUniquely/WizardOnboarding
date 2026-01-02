@@ -1,9 +1,60 @@
 export default function Leaders() {
-  return (
-    <div className="min-h-screen bg-blue-100 flex items-center justify-center p-6">
-      <div className="bg-gradient-to-r from-sky-100 to-pink-100 rounded-3xl flex w-[900px] max-w-5xl ml-70 p-8 gap-8">
+  // Data for the sidebar steps
+  const steps = [
+    { id: 1, label: "Welcome", status: "done" },
+    { id: 2, label: "HUB Story", status: "done" },
+    { id: 3, label: "HUB Family", status: "done" },
+    { id: 4, label: "Our Values", status: "done" },
+    { id: 5, label: "Meet HOWS", status: "done" },
+    { id: 6, label: "Your Modules", status: "done" },
+    { id: 7, label: "Life At HUB", status: "done" },
+    { id: 8, label: "Leadership", status: "active" }
+  ];
 
-        <div className="flex-1">
+  return (
+    <div className="min-h-screen w-full bg-gradient-to-br from-white-50 to-amber-50 flex items-center justify-center p-4 md:p-8 font-sans">
+      
+      {/* Main Content Wrapper holding both floating cards */}
+      <div className="w-full max-w-[1300px] flex flex-col lg:flex-row gap-8 items-start">
+        
+        {/* --- Left Floating Sidebar Card --- */}
+        <div className="w-full lg:w-1/4 bg-gradient-to-r from-sky-100 to-pink-100 border-2 border-white rounded-[30px] p-8 shadow-lg h-[620px]">
+          <div className="flex flex-col gap-8 relative pl-2 pt-10">
+
+            
+             {/* Vertical connector line */}
+            <div className="absolute left-[19px] top-10 bottom-4 w-[2px] bg-gray-300 z-0"></div>
+
+            {steps.map((step) => (
+              <div key={step.id} className="flex items-center gap-4 relative z-10 ">
+                {step.status === 'active' ? (
+                   // Active Step (Orange Glow)
+                   <div className="w-6 h-6 rounded-full bg-orange-400 shadow-[0_0_15px_rgba(251,146,60,0.6)] flex items-center justify-center relative">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                   </div>
+                ) : step.status === 'done' ? (
+                  // Done Step (Orange without glow)
+                  <div className="w-6 h-6 rounded-full bg-orange-400 flex items-center justify-center">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                  </div>
+                ) : (
+                  // Inactive Step (Simple Dot)
+                  <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                  </div>
+                )}
+                
+                <span className={`text-sm font-medium ${step.status === 'active' ? 'text-orange-500 font-bold' : 'text-gray-500'}`}>
+                  {step.id}. {step.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* --- Right Floating Main Content Card --- */}
+        <div className="w-full lg:w-3/4 bg-gradient-to-r from-sky-100 to-pink-100 border-2 border-white rounded-[30px] p-8 shadow-lg">
+          <div className="flex-1">
           <h1 className="text-3xl font-semibold text-gray-800">Your Leaders</h1>
           <p className="text-gray-500 mt-2 mb-8">
             Meet the founders and heads driving our vision forward.
@@ -96,8 +147,9 @@ export default function Leaders() {
             </button>
           </div>
 
+          </div>
         </div>
-      </div>    
+      </div>
     </div>
   );
 }
