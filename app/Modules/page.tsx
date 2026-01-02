@@ -4,12 +4,12 @@ const ModulesPage = () => {
   // Data for the sidebar steps
   const steps = [
     { id: 1, label: "Welcome", status: "done" },
-    { id: 2, label: "Personalize", status: "done" },
-    { id: 3, label: "Preferences", status: "done" },
-    { id: 4, label: "Team", status: "done" },
-    { id: 5, label: "Tools", status: "done" },
-    { id: 6, label: "Your Modules", status: "active" },
-    { id: 7, label: "Our Culture", status: "inactive" },
+    { id: 2, label: "HUB Story", status: "done" },
+    { id: 3, label: "HUB Family", status: "done" },
+    { id: 4, label: "Our Values", status: "active" },
+    { id: 5, label: "Meet HOWS", status: "done" },
+    { id: 6, label: "Your Modules", status: "inactive" },
+    { id: 7, label: "Life At HUB", status: "inactive" },
     { id:8, label: "Leadership", status: "inactive" }
   ];
 
