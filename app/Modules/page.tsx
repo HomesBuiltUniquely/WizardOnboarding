@@ -1,15 +1,16 @@
+import Link from 'next/link';
 import React from 'react';
 
 const ModulesPage = () => {
   // Data for the sidebar steps
   const steps = [
     { id: 1, label: "Welcome", status: "done" },
-    { id: 2, label: "Personalize", status: "done" },
-    { id: 3, label: "Preferences", status: "done" },
-    { id: 4, label: "Team", status: "done" },
-    { id: 5, label: "Tools", status: "done" },
-    { id: 6, label: "Your Modules", status: "active" },
-    { id: 7, label: "Our Culture", status: "inactive" },
+    { id: 2, label: "HUB Story", status: "done" },
+    { id: 3, label: "HUB Family", status: "done" },
+    { id: 4, label: "Our Values", status: "active" },
+    { id: 5, label: "Meet HOWS", status: "done" },
+    { id: 6, label: "Your Modules", status: "inactive" },
+    { id: 7, label: "Life At HUB", status: "inactive" },
     { id:8, label: "Leadership", status: "inactive" }
   ];
 
@@ -132,10 +133,10 @@ const ModulesPage = () => {
           </div>
 
           {/* Bottom CTA Button */}
-          <button className="bg-orange-400 hover:bg-orange-500 text-white px-8 py-3 rounded-full font-bold text-lg transition-all shadow-lg shadow-orange-200 flex items-center gap-2">
+         <Link href="/Life@Hub"><button className="bg-orange-400 hover:bg-orange-500 text-white px-8 py-3 rounded-full font-bold text-lg transition-all shadow-lg shadow-orange-200 flex items-center gap-2">
             Our Culture
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-          </button>
+          </button></Link>
 
 
         </div>

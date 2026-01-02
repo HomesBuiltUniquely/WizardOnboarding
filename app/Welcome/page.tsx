@@ -1,120 +1,90 @@
 import Link from 'next/link';
 
-interface Step {
-  id: number;
-  label: string;
-  isActive: boolean;
-}
-
-interface ProgressTrackerProps {
-  currentStep: number;
-}
-
-function ProgressTracker({ currentStep }: ProgressTrackerProps) {
-  const steps: Step[] = [
-    { id: 1, label: "1. Welcome", isActive: currentStep === 1 },
-    { id: 2, label: "2. HUB Story", isActive: currentStep === 2 },
-    { id: 3, label: "3. HUB Family", isActive: currentStep === 3 },
-    { id: 4, label: "4. Our Values", isActive: currentStep === 4 },
-    { id: 5, label: "5. Meet HOWS", isActive: currentStep === 5 },
-    { id: 6, label: "6. Your Modules", isActive: currentStep === 6 },
-    { id: 7, label: "7. Life At HUB", isActive: currentStep === 7 },
-    { id: 8, label: "8. Leadership", isActive: currentStep === 8 },
+export default function WelcomePage() {
+  // Data for the sidebar steps
+  const steps = [
+    { id: 1, label: "Welcome", status: "active" },
+    { id: 2, label: "Personalize", status: "inactive" },
+    { id: 3, label: "Preferences", status: "inactive" },
+    { id: 4, label: "Team", status: "inactive" },
+    { id: 5, label: "Tools", status: "inactive" },
+    { id: 6, label: "Your Modules", status: "inactive" },
+    { id: 7, label: "Our Culture", status: "inactive" },
+    { id: 8, label: "Leadership", status: "inactive" }
   ];
 
-  // Find the active step
-  const activeStep = steps.find((step) => step.isActive);
-  const inactiveSteps = steps.filter((step) => !step.isActive);
-
   return (
-    <div className="w-64 flex flex-col items-start p-2 gap-4 ml-20 mt-12">
-        {/* Active Step Card - Smaller, top card - Brighter/More Opaque */}
-        {activeStep && (
-          <div className="bg-white/50 backdrop-blur-md rounded-2xl shadow-lg p-4 w-full border border-white/30">
-            <div className="flex items-center gap-3 h-10">
-              {/* Active step indicator with glow */}
-              <div className="relative">
-                <div className="w-4 h-4 rounded-full bg-[#FF8C42] shadow-[0_0_12px_rgba(255,140,66,0.6)]" />
-              </div>
-              <span className="text-base font-bold text-gray-800">
-                {activeStep.label}
-              </span>
-            </div>
-          </div>
-        )}
+    <div className="min-h-screen w-full bg-gradient-to-br from-white-50 to-amber-50 flex items-center justify-center p-4 md:p-8 font-sans">
+      
+      {/* Main Content Wrapper holding both floating cards */}
+      <div className="w-full max-w-[1300px] flex flex-col lg:flex-row gap-8 items-start">
+        
+        {/* --- Left Floating Sidebar Card --- */}
+        <div className="w-full lg:w-1/4 bg-amber-50 border-2 border-white rounded-[30px] p-8 shadow-lg h-[620px]">
+          <div className="flex flex-col gap-8 relative pl-2 pt-10">
 
-        {/* Inactive Steps Card - Larger, bottom card - More Transparent */}
-        {inactiveSteps.length > 0 && (
-          <div className="bg-white/30 backdrop-blur-md rounded-2xl shadow-lg p-4 w-full border border-white/20">
-            <div className="flex flex-col">
-              {inactiveSteps.map((step, index) => (
-                <div key={step.id}>
-                  <div className="flex items-center gap-3 py-2">
-                    {/* Inactive step indicator */}
-                    <div className="w-4 h-4 rounded-full bg-gray-300" />
-                    <span className="text-base font-normal text-gray-500">
-                      {step.label}
-                    </span>
+            
+             {/* Vertical connector line */}
+            <div className="absolute left-[19px] top-10 bottom-4 w-[2px] bg-gray-300 z-0"></div>
+
+            {steps.map((step) => (
+              <div key={step.id} className="flex items-center gap-4 relative z-10 ">
+                {step.status === 'active' ? (
+                   // Active Step (Orange Glow)
+                   <div className="w-6 h-6 rounded-full bg-orange-400 shadow-[0_0_15px_rgba(251,146,60,0.6)] flex items-center justify-center relative">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                   </div>
+                ) : (
+                  // Done/Inactive Step (Simple Dot)
+                  <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                   </div>
-                  {/* Separator line */}
-                  {index < inactiveSteps.length - 1 && (
-                    <div className="h-px bg-gray-200/50 my-1 ml-7" />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-      )}
-    </div>
-  );
-}
-
-function Herosection() {
-  return (
-    <div className="flex-1 flex items-center justify-center p-8">
-      <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-12 max-w-2xl w-full">
-        {/* Waving Hand Icon */}
-        <div className="flex justify-center mb-6">
-          <div className="relative">
-            <img
-              src="/waving-hand.png"
-              alt="Waving Hand"
-              className="w-[120px] h-[120px] animate-bounce"
-            />
+                )}
+                
+                <span className={`text-sm font-medium ${step.status === 'active' ? 'text-orange-500 font-bold' : 'text-gray-500'}`}>
+                  {step.id}. {step.label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Title */}
-        <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
-          Welcome to HUB!
-        </h1>
+        {/* --- Right Floating Main Content Card --- */}
+        <div className="w-full h-[620px] lg:w-3/4 bg-amber-50 border-2 border-white rounded-[30px] p-8 md:p-12 shadow-lg flex items-center justify-center">
+          <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-12 max-w-2xl w-full">
+            {/* Waving Hand Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <img
+                  src="/waving-hand.png"
+                  alt="Waving Hand"
+                  className="w-[120px] h-[120px] animate-bounce"
+                />
+              </div>
+            </div>
 
-        {/* Description */}
-        <p className="text-center text-gray-600 mb-8 ml-12 text-lg leading-relaxed max-w-2xl mx-auto">
-          You&apos;re now part of a team that&apos;s redefining the way India experiences home interiors. At HUB, we don&apos;t just build spaces — we build stories.
-        </p>
+            {/* Title */}
+            <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">
+              Welcome to HUB!
+            </h1>
 
-        {/* Button */}
-        <div className="flex justify-center">
-          <Link href="/HubStory">
-          <button className="bg-[#FF8C42] hover:bg-[#FF7A2E] text-white font-semibold py-2 px-5 rounded-4xl transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center gap-2 text-sm">
-            Let&apos;s Begin
-            <span className="text-xl">→</span>
-          </button>
-          </Link>
+            {/* Description */}
+            <p className="text-center text-gray-600 mb-8 ml-12 text-lg leading-relaxed max-w-2xl mx-auto">
+              You&apos;re now part of a team that&apos;s redefining the way India experiences home interiors. At HUB, we don&apos;t just build spaces — we build stories.
+            </p>
+
+            {/* Button */}
+            <div className="flex justify-center">
+              <Link href="/HubStory">
+              <button className="bg-[#FF8C42] hover:bg-[#FF7A2E] text-white font-semibold py-2 px-5 rounded-4xl transition-all duration-300 shadow-lg hover:shadow-2xl flex items-center gap-2 text-sm">
+                Let&apos;s Begin
+                <span className="text-xl">→</span>
+              </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-export default function WelcomePage() {
-  const currentStep = 1;
-  
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 flex px-12">
-      <ProgressTracker currentStep={currentStep} />
-      <Herosection />
     </div>
   );
 }
